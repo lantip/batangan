@@ -19,6 +19,8 @@ type Props = {
   gameStats: GameStats
   isGameLost: boolean
   isGameWon: boolean
+  solution: string
+  artiKata: string
   handleShare: () => void
 }
 
@@ -29,6 +31,8 @@ export const StatsModal = ({
   gameStats,
   isGameLost,
   isGameWon,
+  solution,
+  artiKata,
   handleShare,
 }: Props) => {
   if (gameStats.totalGames <= 0) {
@@ -49,6 +53,9 @@ export const StatsModal = ({
       handleClose={handleClose}
     >
       <StatBar gameStats={gameStats} />
+      <div className="mb-5 mt-5 font-small text-white">
+        <span className="lowercase italic">{solution}</span> → {artiKata}
+      </div>
       <h4 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">
         {GUESS_DISTRIBUTION_TEXT}
       </h4>

@@ -5,8 +5,8 @@ export const GAME_COPIED_MESSAGE = 'Game copied to clipboard'
 export const ABOUT_GAME_MESSAGE = 'Tentang game ini'
 export const NOT_ENOUGH_LETTERS_MESSAGE = 'Aksara kirang jangkep!'
 export const WORD_NOT_FOUND_MESSAGE = 'Mboten wonten ukara punika'
-export const CORRECT_WORD_MESSAGE = (solution: string) =>
-  `Batangane yaiku ${solution}`
+export const CORRECT_WORD_MESSAGE = (solution: string, makna: string) =>
+  `Batangane yaiku ${solution} → ${makna}`
 export const ENTER_TEXT = 'Enter'
 export const DELETE_TEXT = 'Delete'
 export const STATISTICS_TITLE = 'Statistics'

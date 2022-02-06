@@ -10,6 +10,7 @@ import { Keyboard } from './components/keyboard/Keyboard'
 import { AboutModal } from './components/modals/AboutModal'
 import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
+import kamusJson from './constants/kamus_batangan.json'
 import {
   GAME_TITLE,
   WIN_MESSAGES,
@@ -29,6 +30,7 @@ import {
 import './App.css'
 
 const ALERT_TIME_MS = 2000
+var MAKNA_KATA = ""
 
 function App() {
   const prefersDarkMode = window.matchMedia(
@@ -108,6 +110,12 @@ function App() {
     }
   }
 
+  for (const [key, value] of Object.entries(kamusJson)) {
+    if(key == solution.toLowerCase()){
+      MAKNA_KATA = value
+    }
+  }
+
   const onDelete = () => {
     setCurrentGuess(currentGuess.slice(0, -1))
   }
@@ -148,6 +156,12 @@ function App() {
     }
   }
 
+  
+  
+  // expected output:
+  // "a: somestring"
+  // "b: 42"
+
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div className="flex w-80 mx-auto items-center mb-8 mt-12">
@@ -181,6 +195,8 @@ function App() {
         handleClose={() => setIsStatsModalOpen(false)}
         guesses={guesses}
         gameStats={stats}
+        solution={solution}
+        artiKata={MAKNA_KATA}
         isGameLost={isGameLost}
         isGameWon={isGameWon}
         handleShare={() => {
@@ -206,7 +222,7 @@ function App() {
         message={WORD_NOT_FOUND_MESSAGE}
         isOpen={isWordNotFoundAlertOpen}
       />
-      <Alert message={CORRECT_WORD_MESSAGE(solution)} isOpen={isGameLost} />
+      <Alert message={CORRECT_WORD_MESSAGE(solution, MAKNA_KATA)} isOpen={isGameLost} />
       <Alert
         message={successAlert}
         isOpen={successAlert !== ''}
