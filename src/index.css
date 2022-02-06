@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cell-animation {
+  animation: revealCharCell linear;
+  animation-duration: 0.15s;
+}
+
+@keyframes revealCharCell {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.shadowed {
+  text-shadow: 1px 1px 1px #000000;
+}
