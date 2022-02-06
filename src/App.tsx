@@ -111,7 +111,7 @@ function App() {
   }
 
   for (const [key, value] of Object.entries(kamusJson)) {
-    if(key == solution.toLowerCase()){
+    if(key === solution.toLowerCase()){
       MAKNA_KATA = value
     }
   }
