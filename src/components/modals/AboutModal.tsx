@@ -13,7 +13,7 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
         <a
           href="https://github.com/lantip/batangan"
           className="underline font-bold"
-          target="_blank" 
+          target="_blank"
           rel="noreferrer"
         >
           check out the code here
@@ -24,13 +24,12 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
         <a
           href="https://github.com/bhavesh15184/word-guessing-game"
           className="underline font-bold"
-          target="_blank" 
+          target="_blank"
           rel="noreferrer"
         >
           check out the original code here
         </a>{' '}
       </p>
-      
     </BaseModal>
   )
 }
