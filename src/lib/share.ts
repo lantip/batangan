@@ -5,8 +5,8 @@ import { GAME_TITLE } from '../constants/strings'
 export const shareStatus = (guesses: string[], lost: boolean) => {
   navigator.clipboard.writeText(
     `${GAME_TITLE} ${solutionIndex} ${lost ? 'X' : guesses.length}/6\n\n` +
-    generateEmojiGrid(guesses) +
-    '\n\nhttps://batangan.lantip.xyz'
+      generateEmojiGrid(guesses) +
+      '\n\nhttps://batangan.lantip.xyz'
   )
 }
 
