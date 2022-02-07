@@ -180,12 +180,12 @@ function App() {
       </div>
 
       {/* GRID TEBAKAN */}
-      <div className="mx-auto max-w-full px-4 flex justify-center items-center grow shrink">
+      <div className="mx-auto max-w-full px-4 flex justify-center items-center grow shrink mt-2">
         <Grid guesses={guesses} currentGuess={currentGuess} />
       </div>
 
       {/* KEYBOARD */}
-      <div className="w-screen bg-gray-500 dark:bg-black dark:bg-opacity-20">
+      <div className="w-screen bg-gray-500 dark:bg-black dark:bg-opacity-20 mt-2">
         <div className="max-w-lg w-full mx-auto space-y-3 flex flex-col p-4">
           <Keyboard
             onChar={onChar}

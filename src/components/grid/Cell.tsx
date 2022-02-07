@@ -8,7 +8,7 @@ type Props = {
 
 export const Cell = ({ value, status }: Props) => {
   const classes = classnames(
-    'flex items-center justify-center h-full w-full rounded-sm uppercase text-center text-4xl text-dynamic font-bold border',
+    'flex items-center justify-center h-full w-full rounded-sm uppercase text-center text-4xl text-dynamic font-bold border dark:text-white',
     {
       'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-600':
         !status,
