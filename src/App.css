@@ -1,3 +1,7 @@
 html.dark {
   background-color: rgb(15, 23, 42);
 }
+#main {
+  width: 100vw;
+  height: 100vh;
+}

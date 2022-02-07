@@ -161,9 +161,9 @@ function App() {
   // "b: 42"
 
   return (
-    <div className="flex flex-col items-stretch overflow-y-hidden">
+    <div className="flex flex-col items-stretch overflow-y-hidden" id="main">
       {/* HEADER */}
-      <div className="flex items-center px-4 mx-auto max-w-lg w-full pt-2 pb-4">
+      <div className="flex items-center px-4 mx-auto max-w-lg w-full py-3 border-b border-slate-200 dark:border-slate-600">
         <h1 className="text-xl grow font-bold dark:text-white">{GAME_TITLE}</h1>
         <SunIcon
           className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
@@ -180,66 +180,68 @@ function App() {
       </div>
 
       {/* GRID TEBAKAN */}
-      <div className="mx-auto max-w-full px-4 flex justify-center items-center grow-0 shrink">
+      <div className="mx-auto max-w-full px-4 flex justify-center items-center grow shrink">
         <Grid guesses={guesses} currentGuess={currentGuess} />
       </div>
 
       {/* KEYBOARD */}
-      <div className="max-w-lg w-full mx-auto space-y-3 flex flex-col p-4">
-        <Keyboard
-          onChar={onChar}
-          onDelete={onDelete}
-          onEnter={onEnter}
-          guesses={guesses}
-        />
-        <InfoModal
-          isOpen={isInfoModalOpen}
-          handleClose={() => setIsInfoModalOpen(false)}
-        />
-        <StatsModal
-          isOpen={isStatsModalOpen}
-          handleClose={() => setIsStatsModalOpen(false)}
-          guesses={guesses}
-          gameStats={stats}
-          solution={solution}
-          artiKata={MAKNA_KATA}
-          isGameLost={isGameLost}
-          isGameWon={isGameWon}
-          handleShare={() => {
-            setSuccessAlert(GAME_COPIED_MESSAGE)
-            return setTimeout(() => setSuccessAlert(''), ALERT_TIME_MS)
-          }}
-        />
-        <AboutModal
-          isOpen={isAboutModalOpen}
-          handleClose={() => setIsAboutModalOpen(false)}
-        />
+      <div className="w-screen bg-gray-500 dark:bg-black dark:bg-opacity-20">
+        <div className="max-w-lg w-full mx-auto space-y-3 flex flex-col p-4">
+          <Keyboard
+            onChar={onChar}
+            onDelete={onDelete}
+            onEnter={onEnter}
+            guesses={guesses}
+          />
+          <InfoModal
+            isOpen={isInfoModalOpen}
+            handleClose={() => setIsInfoModalOpen(false)}
+          />
+          <StatsModal
+            isOpen={isStatsModalOpen}
+            handleClose={() => setIsStatsModalOpen(false)}
+            guesses={guesses}
+            gameStats={stats}
+            solution={solution}
+            artiKata={MAKNA_KATA}
+            isGameLost={isGameLost}
+            isGameWon={isGameWon}
+            handleShare={() => {
+              setSuccessAlert(GAME_COPIED_MESSAGE)
+              return setTimeout(() => setSuccessAlert(''), ALERT_TIME_MS)
+            }}
+          />
+          <AboutModal
+            isOpen={isAboutModalOpen}
+            handleClose={() => setIsAboutModalOpen(false)}
+          />
 
-        <button
-          type="button"
-          className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 select-none"
-          onClick={() => setIsAboutModalOpen(true)}
-        >
-          {ABOUT_GAME_MESSAGE}
-        </button>
+          <button
+            type="button"
+            className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 dark:bg-slate-600 dark:text-amber-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 select-none"
+            onClick={() => setIsAboutModalOpen(true)}
+          >
+            {ABOUT_GAME_MESSAGE}
+          </button>
 
-        <Alert
-          message={NOT_ENOUGH_LETTERS_MESSAGE}
-          isOpen={isNotEnoughLetters}
-        />
-        <Alert
-          message={WORD_NOT_FOUND_MESSAGE}
-          isOpen={isWordNotFoundAlertOpen}
-        />
-        <Alert
-          message={CORRECT_WORD_MESSAGE(solution, MAKNA_KATA)}
-          isOpen={isGameLost}
-        />
-        <Alert
-          message={successAlert}
-          isOpen={successAlert !== ''}
-          variant="success"
-        />
+          <Alert
+            message={NOT_ENOUGH_LETTERS_MESSAGE}
+            isOpen={isNotEnoughLetters}
+          />
+          <Alert
+            message={WORD_NOT_FOUND_MESSAGE}
+            isOpen={isWordNotFoundAlertOpen}
+          />
+          <Alert
+            message={CORRECT_WORD_MESSAGE(solution, MAKNA_KATA)}
+            isOpen={isGameLost}
+          />
+          <Alert
+            message={successAlert}
+            isOpen={successAlert !== ''}
+            variant="success"
+          />
+        </div>
       </div>
     </div>
   )

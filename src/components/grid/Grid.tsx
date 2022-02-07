@@ -38,12 +38,16 @@ export const Grid = ({ guesses, currentGuess }: Props) => {
     guesses.length < 5 ? Array.from(Array(5 - guesses.length)) : []
 
   const { width } = useWindowDimensions()
-  const ratio = width > 600 ? 600 : width
+
+  const aspectRatio = 5 / 6 // 5 columns, 6 rows
+  const space = 24 // gap: 1.5rem = 24px
+  const heightRatio = aspectRatio * (width - space)
+  const height = width - space > 580 ? 580 : heightRatio
 
   return (
     <div
       className="grid grid-rows-6 gap-1.5 max-w-full"
-      style={{ aspectRatio: '1/1', width: ratio, height: ratio }}
+      style={{ aspectRatio: '5/6', height: height }}
     >
       {guesses.map((guess, i) => (
         <CompletedRow key={i} guess={guess} />
