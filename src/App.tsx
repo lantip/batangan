@@ -30,7 +30,7 @@ import {
 import './App.css'
 
 const ALERT_TIME_MS = 2000
-var MAKNA_KATA = ""
+var MAKNA_KATA = ''
 
 function App() {
   const prefersDarkMode = window.matchMedia(
@@ -111,7 +111,7 @@ function App() {
   }
 
   for (const [key, value] of Object.entries(kamusJson)) {
-    if(key === solution.toLowerCase()){
+    if (key === solution.toLowerCase()) {
       MAKNA_KATA = value
     }
   }
@@ -156,16 +156,15 @@ function App() {
     }
   }
 
-  
-  
   // expected output:
   // "a: somestring"
   // "b: 42"
 
   return (
-    <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div className="flex w-80 mx-auto items-center mb-8 mt-12">
-        <h1 className="text-xl ml-2.5 grow font-bold dark:text-white">{GAME_TITLE}</h1>
+    <div className="flex flex-col items-stretch overflow-y-hidden">
+      {/* HEADER */}
+      <div className="flex items-center px-4 mx-auto max-w-lg w-full pt-2 pb-4">
+        <h1 className="text-xl grow font-bold dark:text-white">{GAME_TITLE}</h1>
         <SunIcon
           className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
           onClick={() => handleDarkMode(!isDarkMode)}
@@ -175,59 +174,73 @@ function App() {
           onClick={() => setIsInfoModalOpen(true)}
         />
         <ChartBarIcon
-          className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
+          className="h-6 w-6 cursor-pointer dark:stroke-white"
           onClick={() => setIsStatsModalOpen(true)}
         />
       </div>
-      <Grid guesses={guesses} currentGuess={currentGuess} />
-      <Keyboard
-        onChar={onChar}
-        onDelete={onDelete}
-        onEnter={onEnter}
-        guesses={guesses}
-      />
-      <InfoModal
-        isOpen={isInfoModalOpen}
-        handleClose={() => setIsInfoModalOpen(false)}
-      />
-      <StatsModal
-        isOpen={isStatsModalOpen}
-        handleClose={() => setIsStatsModalOpen(false)}
-        guesses={guesses}
-        gameStats={stats}
-        solution={solution}
-        artiKata={MAKNA_KATA}
-        isGameLost={isGameLost}
-        isGameWon={isGameWon}
-        handleShare={() => {
-          setSuccessAlert(GAME_COPIED_MESSAGE)
-          return setTimeout(() => setSuccessAlert(''), ALERT_TIME_MS)
-        }}
-      />
-      <AboutModal
-        isOpen={isAboutModalOpen}
-        handleClose={() => setIsAboutModalOpen(false)}
-      />
 
-      <button
-        type="button"
-        className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 select-none"
-        onClick={() => setIsAboutModalOpen(true)}
-      >
-        {ABOUT_GAME_MESSAGE}
-      </button>
+      {/* GRID TEBAKAN */}
+      <div className="mx-auto max-w-full px-4 flex justify-center items-center grow-0 shrink">
+        <Grid guesses={guesses} currentGuess={currentGuess} />
+      </div>
 
-      <Alert message={NOT_ENOUGH_LETTERS_MESSAGE} isOpen={isNotEnoughLetters} />
-      <Alert
-        message={WORD_NOT_FOUND_MESSAGE}
-        isOpen={isWordNotFoundAlertOpen}
-      />
-      <Alert message={CORRECT_WORD_MESSAGE(solution, MAKNA_KATA)} isOpen={isGameLost} />
-      <Alert
-        message={successAlert}
-        isOpen={successAlert !== ''}
-        variant="success"
-      />
+      {/* KEYBOARD */}
+      <div className="max-w-lg w-full mx-auto space-y-3 flex flex-col p-4">
+        <Keyboard
+          onChar={onChar}
+          onDelete={onDelete}
+          onEnter={onEnter}
+          guesses={guesses}
+        />
+        <InfoModal
+          isOpen={isInfoModalOpen}
+          handleClose={() => setIsInfoModalOpen(false)}
+        />
+        <StatsModal
+          isOpen={isStatsModalOpen}
+          handleClose={() => setIsStatsModalOpen(false)}
+          guesses={guesses}
+          gameStats={stats}
+          solution={solution}
+          artiKata={MAKNA_KATA}
+          isGameLost={isGameLost}
+          isGameWon={isGameWon}
+          handleShare={() => {
+            setSuccessAlert(GAME_COPIED_MESSAGE)
+            return setTimeout(() => setSuccessAlert(''), ALERT_TIME_MS)
+          }}
+        />
+        <AboutModal
+          isOpen={isAboutModalOpen}
+          handleClose={() => setIsAboutModalOpen(false)}
+        />
+
+        <button
+          type="button"
+          className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 select-none"
+          onClick={() => setIsAboutModalOpen(true)}
+        >
+          {ABOUT_GAME_MESSAGE}
+        </button>
+
+        <Alert
+          message={NOT_ENOUGH_LETTERS_MESSAGE}
+          isOpen={isNotEnoughLetters}
+        />
+        <Alert
+          message={WORD_NOT_FOUND_MESSAGE}
+          isOpen={isWordNotFoundAlertOpen}
+        />
+        <Alert
+          message={CORRECT_WORD_MESSAGE(solution, MAKNA_KATA)}
+          isOpen={isGameLost}
+        />
+        <Alert
+          message={successAlert}
+          isOpen={successAlert !== ''}
+          variant="success"
+        />
+      </div>
     </div>
   )
 }
