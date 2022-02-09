@@ -53,7 +53,7 @@ export const StatsModal = ({
       handleClose={handleClose}
     >
       <StatBar gameStats={gameStats} />
-      <div className="mb-5 mt-5 font-small text-white">
+      <div className="mb-5 mt-5 font-small dark:text-white">
         <span className="lowercase italic">{solution}</span> → {artiKata}
       </div>
       <h4 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">
