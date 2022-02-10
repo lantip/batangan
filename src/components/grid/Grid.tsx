@@ -37,17 +37,16 @@ export const Grid = ({ guesses, currentGuess }: Props) => {
   const empties =
     guesses.length < 5 ? Array.from(Array(5 - guesses.length)) : []
 
-  const { width } = useWindowDimensions()
+  const { height } = useWindowDimensions()
 
-  const aspectRatio = 5 / 6 // 5 columns, 6 rows
+  // const aspectRatio = 5 / 6 // 5 columns, 6 rows
   const space = 24 // gap: 1.5rem = 24px
-  const heightRatio = aspectRatio * (width - space)
-  const height = width - space > 580 ? 580 : heightRatio
+  const actualHeight = 0.6 * height - 2 * space
 
   return (
     <div
       className="grid grid-rows-6 gap-1.5 max-w-full"
-      style={{ aspectRatio: '5/6', height: height }}
+      style={{ aspectRatio: '5/6', height: actualHeight }}
     >
       {guesses.map((guess, i) => (
         <CompletedRow key={i} guess={guess} />

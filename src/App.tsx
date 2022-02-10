@@ -161,9 +161,15 @@ function App() {
   // "b: 42"
 
   return (
-    <div className="flex flex-col items-stretch overflow-y-hidden" id="main">
+    <div
+      className="flex flex-col justify-between items-stretch overflow-y-auto"
+      id="main"
+    >
       {/* HEADER */}
-      <div className="flex items-center px-4 mx-auto max-w-lg w-full py-3 border-b border-slate-200 dark:border-slate-600">
+      <div
+        className="flex items-center px-4 mx-auto max-w-lg w-full py-3 border-b border-slate-200 dark:border-slate-600"
+        id="header"
+      >
         <h1 className="text-xl grow font-bold dark:text-white">{GAME_TITLE}</h1>
         <SunIcon
           className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
@@ -180,12 +186,18 @@ function App() {
       </div>
 
       {/* GRID TEBAKAN */}
-      <div className="mx-auto max-w-full px-4 flex justify-center items-center grow shrink mt-2">
+      <div
+        className="mx-auto max-w-full px-4 flex justify-center items-center grow shrink mt-2"
+        id="grid"
+      >
         <Grid guesses={guesses} currentGuess={currentGuess} />
       </div>
 
       {/* KEYBOARD */}
-      <div className="w-screen bg-gray-500 dark:bg-black dark:bg-opacity-20 mt-2">
+      <div
+        className="w-screen bg-gray-500 dark:bg-black dark:bg-opacity-20 mt-2"
+        id="keyboard"
+      >
         <div className="max-w-lg w-full mx-auto space-y-3 flex flex-col p-4">
           <Keyboard
             onChar={onChar}
