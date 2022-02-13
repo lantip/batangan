@@ -54,7 +54,11 @@ export const StatsModal = ({
     >
       <StatBar gameStats={gameStats} />
       <div className="mb-5 mt-5 font-small dark:text-white">
-        <span className="lowercase italic">{solution}</span> → {artiKata}
+        <span className="lowercase italic">
+          {' '}
+          {(isGameLost || isGameWon) && solution}
+        </span>{' '}
+        → {(isGameLost || isGameWon) && artiKata}
       </div>
       <h4 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">
         {GUESS_DISTRIBUTION_TEXT}
